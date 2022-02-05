@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>welcome</title>
+</head>
+<body>
+	{% for message in messages %}
+	<div class="alert alert-warning" role="alert">
+		{{message}}
+	</div>
+	{% endfor %}
+	<h1>welcome to our website</h1>
+	{% if user.is_authenticated %}
+	<div class="alert alert-success" role="alert">
+		<h3>Hello {{name}}</h3>
+		<h4>You're successfully logged in.</h4>
+	</div>
+	<button class="btn btn-primary"><a href="{% url 'signout' %}">Signout</a></button>
+	{% else %}
+	<button class="btn btn-primary"><a href="{% url 'signin' %}">Signin</a></button>
+	<button class="btn btn-primary"><a href="{% url 'signup' %}">Signup</a></button>
+	{% endif %}
+</body>
+</html>
